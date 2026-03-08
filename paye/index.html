@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,222 +11,611 @@
 <link rel="apple-touch-icon" href="../IMG_0221.png">
 
 <style>
-
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-background:#f3f4f6;
-margin:0;
-padding:20px;
-color:#111;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#f3f4f6;
+  margin:0;
+  padding:20px;
+  color:#111;
 }
-
 .container{
-max-width:700px;
-margin:auto;
+  max-width:760px;
+  margin:auto;
 }
-
 .card{
-background:#fff;
-padding:25px;
-border-radius:14px;
-box-shadow:0 4px 14px rgba(0,0,0,0.1);
-margin-bottom:20px;
-text-align:center;
+  background:#fff;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.10);
+  margin-bottom:20px;
 }
-
+.logo-wrap{
+  text-align:center;
+  margin-bottom:16px;
+}
 .logo{
-width:220px;
-margin-bottom:15px;
+  width:220px;
+  max-width:100%;
+  height:auto;
 }
-
 h1{
-margin:10px 0;
+  margin:10px 0;
+  text-align:center;
 }
-
+h2{
+  margin:0 0 12px 0;
+}
+h3{
+  margin:16px 0 10px 0;
+}
+p.center{
+  text-align:center;
+}
 input,textarea{
-width:100%;
-padding:14px;
-margin-top:10px;
-margin-bottom:15px;
-border-radius:10px;
-border:1px solid #ccc;
-font-size:18px;
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  margin-bottom:14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:18px;
+  box-sizing:border-box;
 }
-
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
 button{
-padding:15px;
-font-size:18px;
-border-radius:10px;
-border:none;
-background:#2563eb;
-color:white;
-width:100%;
-margin-top:10px;
+  padding:15px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+  color:#fff;
+  width:100%;
+  margin-top:10px;
+  cursor:pointer;
 }
-
-.whatsapp{
-background:#25D366;
+.primary{ background:#111827; }
+.blue{ background:#2563eb; }
+.green{ background:#25D366; }
+.grey{ background:#9ca3af; color:#111; }
+.info{
+  background:#eef6ff;
+  border:1px solid #dbeafe;
+  padding:14px;
+  border-radius:10px;
+  line-height:1.6;
+  margin-top:10px;
 }
-
+.summary{
+  background:#e2f0d9;
+  padding:14px;
+  border-radius:10px;
+  font-weight:700;
+  line-height:1.8;
+}
+.readonly{
+  background:#f5f5f5;
+}
+.status{
+  font-size:14px;
+  font-weight:700;
+  margin-top:6px;
+}
+.hidden{
+  display:none;
+}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.grid3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:14px;
+}
+.print-sheet{
+  display:none;
+}
+.print-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:16px;
+  margin-bottom:16px;
+}
+.print-table th,
+.print-table td{
+  border:1px solid #cfcfcf;
+  padding:8px 10px;
+  font-size:13px;
+  text-align:left;
+}
+.print-table th{
+  background:#f3f4f6;
+}
+.print-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+  margin-bottom:16px;
+}
+.print-top img{
+  width:180px;
+  height:auto;
+}
+.print-meta{
+  text-align:right;
+  font-size:14px;
+  line-height:1.6;
+}
+.print-block{
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  padding:10px 12px;
+  margin-bottom:14px;
+}
+.print-totals{
+  width:100%;
+  max-width:420px;
+  margin-left:auto;
+  border-collapse:collapse;
+}
+.print-totals td{
+  border:1px solid #d1d5db;
+  padding:8px 10px;
+  font-size:14px;
+}
+.print-totals tr:last-child td{
+  font-weight:700;
+  background:#e2f0d9;
+}
+.small{
+  font-size:14px;
+  color:#555;
+}
+@media (max-width:700px){
+  body{ padding:12px; }
+  .grid2,.grid3{ grid-template-columns:1fr; }
+}
+@media print{
+  body{
+    background:#fff;
+    padding:0;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+  }
+  .noprint{
+    display:none !important;
+  }
+  .print-sheet{
+    display:block !important;
+    padding:18mm 14mm;
+  }
+  @page{
+    size:A4;
+    margin:0;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<!-- LOGIN SCREEN -->
+  <!-- LOGIN -->
+  <div id="loginCard" class="card noprint">
+    <div class="logo-wrap">
+      <img src="../IMG_0221.png" class="logo" alt="Concept Decorating logo">
+    </div>
 
-<div id="login" class="card">
+    <h1>PAYE Operative<br>Timesheet Portal</h1>
+    <p class="center">Enter access code to continue</p>
 
-<img src="../IMG_0221.png" class="logo">
+    <input id="code" type="password" placeholder="Access code">
+    <button class="primary" onclick="login()">Enter</button>
+    <p id="loginError" class="center" style="color:red;font-weight:700;"></p>
+  </div>
 
-<h1>PAYE Operative<br>Timesheet Portal</h1>
+  <!-- APP -->
+  <div id="app" class="hidden">
 
-<p>Enter access code</p>
+    <div class="card noprint">
+      <div class="logo-wrap">
+        <img src="../IMG_0221.png" class="logo" alt="Concept Decorating logo">
+      </div>
 
-<input id="code" type="password" placeholder="Access code">
+      <h1>Operative Timesheet</h1>
 
-<button onclick="login()">Enter</button>
+      <button class="blue" onclick="saveMyDetails()">Save My Details</button>
+      <button class="grey" onclick="editMyDetails()">Edit My Details</button>
+      <div id="detailsStatus" class="status"></div>
+
+      <div class="grid2">
+        <div>
+          <label>Operative Name</label>
+          <input id="name" placeholder="Operative Name">
+        </div>
+        <div>
+          <label>Hourly Rate (£)</label>
+          <input id="rate" type="number" step="0.01" placeholder="Hourly Rate (£)">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label>Week Ending</label>
+          <input id="week" type="date">
+        </div>
+        <div>
+          <label>Timesheet Number</label>
+          <input id="timesheetNo" class="readonly" readonly>
+        </div>
+      </div>
+
+      <label>Site / Job Reference</label>
+      <input id="jobref" placeholder="e.g. ASK Italian Lincoln">
+
+      <div class="small">Timesheet number is generated automatically.</div>
+    </div>
+
+    <div class="card noprint">
+      <h2>Hours Worked</h2>
+
+      <div class="grid3">
+        <div><label>Monday Hours</label><input id="mon" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Tuesday Hours</label><input id="tue" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Wednesday Hours</label><input id="wed" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Thursday Hours</label><input id="thu" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Friday Hours</label><input id="fri" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Saturday Hours</label><input id="sat" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Sunday Hours</label><input id="sun" type="number" step="0.25" placeholder="0"></div>
+        <div><label>Total Hours</label><input id="totalHours" class="readonly" readonly></div>
+      </div>
+
+      <div class="summary">
+        Weekday Pay: £<span id="weekdayPay">0.00</span><br>
+        Saturday Overtime (x1.5): £<span id="satPay">0.00</span><br>
+        Sunday Overtime (x2): £<span id="sunPay">0.00</span><br>
+        Labour Total: £<span id="labourTotal">0.00</span>
+      </div>
+    </div>
+
+    <div class="card noprint">
+      <h2>Extras</h2>
+
+      <label>Bonus (£)</label>
+      <input id="bonus" type="number" step="0.01" placeholder="0.00">
+
+      <label>Mileage (miles)</label>
+      <input id="miles" type="number" step="0.1" placeholder="0">
+
+      <label>Expense Description</label>
+      <input id="expdesc" placeholder="e.g. Parking / materials collection">
+
+      <label>Expense Amount (£)</label>
+      <input id="expenses" type="number" step="0.01" placeholder="0.00">
+
+      <div class="summary">
+        Mileage Total: £<span id="mileagePay">0.00</span><br>
+        Expenses Total: £<span id="expensesPay">0.00</span><br>
+        Grand Total Payable: £<span id="grandTotal">0.00</span>
+      </div>
+    </div>
+
+    <div class="card noprint">
+      <h2>Notes</h2>
+      <textarea id="notes" placeholder="Notes"></textarea>
+    </div>
+
+    <div class="card noprint">
+      <div class="info">
+        <strong>How to send</strong><br>
+        1. Press <strong>Generate PDF</strong><br>
+        2. Press <strong>Send via WhatsApp</strong><br>
+        3. Attach the saved PDF in WhatsApp before sending
+      </div>
+
+      <button class="primary" onclick="generatePDF()">Generate PDF</button>
+      <button class="green" onclick="sendWhatsApp()">Send via WhatsApp</button>
+    </div>
+
+  </div>
+
+  <!-- PRINT / PDF -->
+  <div class="print-sheet" id="printSheet">
+    <div class="print-top">
+      <div>
+        <img src="../IMG_0221.png" alt="Concept Decorating logo">
+      </div>
+      <div class="print-meta">
+        <strong>PAYE Operative Timesheet</strong><br>
+        <strong>Timesheet No:</strong> <span id="p_timesheetNo"></span><br>
+        <strong>Week Ending:</strong> <span id="p_week"></span>
+      </div>
+    </div>
+
+    <div class="print-block">
+      <strong>Operative:</strong> <span id="p_name"></span><br>
+      <strong>Site / Job:</strong> <span id="p_jobref"></span><br>
+      <strong>Hourly Rate:</strong> £<span id="p_rate"></span>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Hours</th>
+          <th>Rate Basis</th>
+          <th>Pay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Monday</td><td id="p_mon"></td><td>Standard</td><td>£<span id="p_monPay"></span></td></tr>
+        <tr><td>Tuesday</td><td id="p_tue"></td><td>Standard</td><td>£<span id="p_tuePay"></span></td></tr>
+        <tr><td>Wednesday</td><td id="p_wed"></td><td>Standard</td><td>£<span id="p_wedPay"></span></td></tr>
+        <tr><td>Thursday</td><td id="p_thu"></td><td>Standard</td><td>£<span id="p_thuPay"></span></td></tr>
+        <tr><td>Friday</td><td id="p_fri"></td><td>Standard</td><td>£<span id="p_friPay"></span></td></tr>
+        <tr><td>Saturday</td><td id="p_sat"></td><td>x1.5</td><td>£<span id="p_satPay"></span></td></tr>
+        <tr><td>Sunday</td><td id="p_sun"></td><td>x2</td><td>£<span id="p_sunPay"></span></td></tr>
+      </tbody>
+    </table>
+
+    <table class="print-totals">
+      <tr><td>Total Hours</td><td><span id="p_totalHours"></span></td></tr>
+      <tr><td>Weekday Pay</td><td>£<span id="p_weekdayPay"></span></td></tr>
+      <tr><td>Saturday Overtime</td><td>£<span id="p_satTotal"></span></td></tr>
+      <tr><td>Sunday Overtime</td><td>£<span id="p_sunTotal"></span></td></tr>
+      <tr><td>Bonus</td><td>£<span id="p_bonus"></span></td></tr>
+      <tr><td>Mileage</td><td>£<span id="p_mileage"></span></td></tr>
+      <tr><td>Expenses</td><td>£<span id="p_expenses"></span></td></tr>
+      <tr><td>Grand Total Payable</td><td>£<span id="p_grandTotal"></span></td></tr>
+    </table>
+
+    <div class="print-block">
+      <strong>Expense Description:</strong> <span id="p_expdesc"></span><br><br>
+      <strong>Notes:</strong><br>
+      <span id="p_notes"></span>
+    </div>
+  </div>
 
 </div>
-
-
-<!-- TIMESHEET -->
-
-<div id="app" class="card" style="display:none">
-
-<img src="../IMG_0221.png" class="logo">
-
-<h1>Operative Timesheet</h1>
-
-<input id="name" placeholder="Operative Name">
-
-<input id="rate" placeholder="Hourly Rate (£)">
-
-<input id="week" type="date">
-
-<h3>Hours Worked</h3>
-
-<input id="mon" placeholder="Monday Hours">
-<input id="tue" placeholder="Tuesday Hours">
-<input id="wed" placeholder="Wednesday Hours">
-<input id="thu" placeholder="Thursday Hours">
-<input id="fri" placeholder="Friday Hours">
-<input id="sat" placeholder="Saturday Hours">
-<input id="sun" placeholder="Sunday Hours">
-
-<h3>Extras</h3>
-
-<input id="bonus" placeholder="Bonus £">
-<input id="miles" placeholder="Miles Driven">
-
-<textarea id="notes" placeholder="Notes"></textarea>
-
-<button onclick="generatePDF()">Generate PDF</button>
-
-<button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
-
-</div>
-
-</div>
-
 
 <script>
+const ACCESS_CODE = "paye";
+const DETAILS_KEY = "concept_paye_saved_details_v2";
+const COUNTER_KEY = "concept_paye_timesheet_counter_v2";
+
+function byId(id){
+  return document.getElementById(id);
+}
+
+function num(v){
+  return parseFloat(v) || 0;
+}
 
 function login(){
-
-if(document.getElementById("code").value=="paye"){
-
-document.getElementById("login").style.display="none"
-
-document.getElementById("app").style.display="block"
-
+  if(byId("code").value === ACCESS_CODE){
+    byId("loginCard").style.display = "none";
+    byId("app").classList.remove("hidden");
+    setDefaultWeek();
+    loadMyDetails();
+    updateTimesheetNumber();
+    recalc();
+  } else {
+    byId("loginError").innerText = "Incorrect access code";
+  }
 }
 
+function setDefaultWeek(){
+  if(!byId("week").value){
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    byId("week").value = `${yyyy}-${mm}-${dd}`;
+  }
 }
 
-function num(v){return parseFloat(v)||0}
-
-
-function calculateTotal(){
-
-let rate=num(document.getElementById("rate").value)
-
-let weekday=
-
-(num(mon.value)+
-num(tue.value)+
-num(wed.value)+
-num(thu.value)+
-num(fri.value))*rate
-
-let satPay=num(sat.value)*rate*1.5
-let sunPay=num(sun.value)*rate*2
-
-let mileage=num(miles.value)*0.45
-
-let total=weekday+satPay+sunPay+num(bonus.value)+mileage
-
-return total
-
+function updateTimesheetNumber(){
+  const week = byId("week").value || "0000-00-00";
+  let counters = {};
+  try{
+    counters = JSON.parse(localStorage.getItem(COUNTER_KEY) || "{}");
+  }catch(e){
+    counters = {};
+  }
+  if(!counters[week]){
+    counters[week] = 1;
+    localStorage.setItem(COUNTER_KEY, JSON.stringify(counters));
+  }
+  const datePart = week.replaceAll("-","").slice(2);
+  const seq = String(counters[week]).padStart(2,"0");
+  byId("timesheetNo").value = `PAYE-${datePart}-${seq}`;
 }
 
+function saveMyDetails(){
+  const details = {
+    name: byId("name").value.trim(),
+    rate: byId("rate").value.trim()
+  };
+  if(!details.name || !details.rate){
+    byId("detailsStatus").innerText = "Enter operative name and hourly rate first.";
+    byId("detailsStatus").style.color = "red";
+    return;
+  }
+  localStorage.setItem(DETAILS_KEY, JSON.stringify(details));
+  byId("name").readOnly = true;
+  byId("rate").readOnly = true;
+  byId("name").classList.add("readonly");
+  byId("rate").classList.add("readonly");
+  byId("detailsStatus").innerText = "Details saved on this phone.";
+  byId("detailsStatus").style.color = "#0f766e";
+}
+
+function editMyDetails(){
+  byId("name").readOnly = false;
+  byId("rate").readOnly = false;
+  byId("name").classList.remove("readonly");
+  byId("rate").classList.remove("readonly");
+  byId("detailsStatus").innerText = "You can now edit your details.";
+  byId("detailsStatus").style.color = "#2563eb";
+}
+
+function loadMyDetails(){
+  try{
+    const details = JSON.parse(localStorage.getItem(DETAILS_KEY) || "{}");
+    if(details.name){ byId("name").value = details.name; }
+    if(details.rate){ byId("rate").value = details.rate; }
+    if(details.name || details.rate){
+      byId("name").readOnly = true;
+      byId("rate").readOnly = true;
+      byId("name").classList.add("readonly");
+      byId("rate").classList.add("readonly");
+      byId("detailsStatus").innerText = "Saved details loaded.";
+      byId("detailsStatus").style.color = "#0f766e";
+    }
+  }catch(e){}
+}
+
+function calculations(){
+  const rate = num(byId("rate").value);
+
+  const monH = num(byId("mon").value);
+  const tueH = num(byId("tue").value);
+  const wedH = num(byId("wed").value);
+  const thuH = num(byId("thu").value);
+  const friH = num(byId("fri").value);
+  const satH = num(byId("sat").value);
+  const sunH = num(byId("sun").value);
+
+  const monPay = monH * rate;
+  const tuePay = tueH * rate;
+  const wedPay = wedH * rate;
+  const thuPay = thuH * rate;
+  const friPay = friH * rate;
+  const satPay = satH * rate * 1.5;
+  const sunPay = sunH * rate * 2;
+
+  const totalHours = monH+tueH+wedH+thuH+friH+satH+sunH;
+  const weekdayPay = monPay+tuePay+wedPay+thuPay+friPay;
+  const labourTotal = weekdayPay + satPay + sunPay;
+  const bonus = num(byId("bonus").value);
+  const mileage = num(byId("miles").value) * 0.45;
+  const expenses = num(byId("expenses").value);
+  const grandTotal = labourTotal + bonus + mileage + expenses;
+
+  return {
+    rate, monH, tueH, wedH, thuH, friH, satH, sunH,
+    monPay, tuePay, wedPay, thuPay, friPay, satPay, sunPay,
+    totalHours, weekdayPay, labourTotal, bonus, mileage, expenses, grandTotal
+  };
+}
+
+function recalc(){
+  const c = calculations();
+
+  byId("totalHours").value = c.totalHours.toFixed(2);
+  byId("weekdayPay").innerText = c.weekdayPay.toFixed(2);
+  byId("satPay").innerText = c.satPay.toFixed(2);
+  byId("sunPay").innerText = c.sunPay.toFixed(2);
+  byId("labourTotal").innerText = c.labourTotal.toFixed(2);
+  byId("mileagePay").innerText = c.mileage.toFixed(2);
+  byId("expensesPay").innerText = c.expenses.toFixed(2);
+  byId("grandTotal").innerText = c.grandTotal.toFixed(2);
+
+  byId("p_timesheetNo").innerText = byId("timesheetNo").value;
+  byId("p_week").innerText = byId("week").value;
+  byId("p_name").innerText = byId("name").value || "";
+  byId("p_jobref").innerText = byId("jobref").value || "";
+  byId("p_rate").innerText = c.rate.toFixed(2);
+
+  byId("p_mon").innerText = c.monH.toFixed(2);
+  byId("p_tue").innerText = c.tueH.toFixed(2);
+  byId("p_wed").innerText = c.wedH.toFixed(2);
+  byId("p_thu").innerText = c.thuH.toFixed(2);
+  byId("p_fri").innerText = c.friH.toFixed(2);
+  byId("p_sat").innerText = c.satH.toFixed(2);
+  byId("p_sun").innerText = c.sunH.toFixed(2);
+
+  byId("p_monPay").innerText = c.monPay.toFixed(2);
+  byId("p_tuePay").innerText = c.tuePay.toFixed(2);
+  byId("p_wedPay").innerText = c.wedPay.toFixed(2);
+  byId("p_thuPay").innerText = c.thuPay.toFixed(2);
+  byId("p_friPay").innerText = c.friPay.toFixed(2);
+  byId("p_satPay").innerText = c.satPay.toFixed(2);
+  byId("p_sunPay").innerText = c.sunPay.toFixed(2);
+
+  byId("p_totalHours").innerText = c.totalHours.toFixed(2);
+  byId("p_weekdayPay").innerText = c.weekdayPay.toFixed(2);
+  byId("p_satTotal").innerText = c.satPay.toFixed(2);
+  byId("p_sunTotal").innerText = c.sunPay.toFixed(2);
+  byId("p_bonus").innerText = c.bonus.toFixed(2);
+  byId("p_mileage").innerText = c.mileage.toFixed(2);
+  byId("p_expenses").innerText = c.expenses.toFixed(2);
+  byId("p_grandTotal").innerText = c.grandTotal.toFixed(2);
+  byId("p_expdesc").innerText = byId("expdesc").value || "";
+  byId("p_notes").innerText = byId("notes").value || "";
+}
 
 function generatePDF(){
-
-let total=calculateTotal()
-
-let html=`
-
-<h1>Concept Decorating</h1>
-
-<img src="../IMG_0221.png" width="200">
-
-<h2>PAYE Timesheet</h2>
-
-<p><b>Operative:</b> ${name.value}</p>
-
-<p><b>Week Ending:</b> ${week.value}</p>
-
-<p><b>Total Pay:</b> £${total.toFixed(2)}</p>
-
-`
-
-let w=window.open()
-
-w.document.write(html)
-
-w.print()
-
+  recalc();
+  window.print();
 }
-
-
 
 function sendWhatsApp(){
-
-let total=calculateTotal()
-
-let message=
-
+  const c = calculations();
+  const message =
 `Concept Decorating PAYE Timesheet
 
-Operative: ${name.value}
+Timesheet No: ${byId("timesheetNo").value}
+Operative: ${byId("name").value}
+Week Ending: ${byId("week").value}
+Site / Job: ${byId("jobref").value}
 
-Week Ending: ${week.value}
+Hours
+Mon: ${num(byId("mon").value).toFixed(2)}
+Tue: ${num(byId("tue").value).toFixed(2)}
+Wed: ${num(byId("wed").value).toFixed(2)}
+Thu: ${num(byId("thu").value).toFixed(2)}
+Fri: ${num(byId("fri").value).toFixed(2)}
+Sat: ${num(byId("sat").value).toFixed(2)}
+Sun: ${num(byId("sun").value).toFixed(2)}
 
-Total Pay: £${total.toFixed(2)}
+Weekday Pay: £${c.weekdayPay.toFixed(2)}
+Saturday Overtime: £${c.satPay.toFixed(2)}
+Sunday Overtime: £${c.sunPay.toFixed(2)}
+Bonus: £${c.bonus.toFixed(2)}
+Mileage: £${c.mileage.toFixed(2)}
+Expenses: £${c.expenses.toFixed(2)}
+
+Grand Total: £${c.grandTotal.toFixed(2)}
 
 Notes:
-${notes.value}`
+${byId("notes").value}`;
 
-let url=`https://wa.me/?text=${encodeURIComponent(message)}`
-
-window.open(url)
-
+  window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
 }
 
+document.addEventListener("DOMContentLoaded", function(){
+  byId("code").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ login(); }
+  });
+
+  [
+    "name","rate","week","jobref","mon","tue","wed","thu","fri","sat","sun",
+    "bonus","miles","expdesc","expenses","notes"
+  ].forEach(function(id){
+    byId(id).addEventListener("input", recalc);
+  });
+
+  byId("week").addEventListener("change", function(){
+    updateTimesheetNumber();
+    recalc();
+  });
+});
 </script>
 
 </body>

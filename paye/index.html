@@ -28,7 +28,7 @@ margin:auto;
 
 .card{
 background:#fff;
-padding:20px;
+padding:25px;
 border-radius:14px;
 box-shadow:0 4px 14px rgba(0,0,0,0.1);
 margin-bottom:20px;
@@ -55,7 +55,7 @@ font-size:18px;
 }
 
 button{
-padding:14px;
+padding:15px;
 font-size:18px;
 border-radius:10px;
 border:none;
@@ -65,8 +65,8 @@ width:100%;
 margin-top:10px;
 }
 
-button.secondary{
-background:#9ca3af;
+.whatsapp{
+background:#25D366;
 }
 
 </style>
@@ -77,7 +77,7 @@ background:#9ca3af;
 
 <div class="container">
 
-<!-- LOGIN -->
+<!-- LOGIN SCREEN -->
 
 <div id="login" class="card">
 
@@ -104,7 +104,7 @@ background:#9ca3af;
 
 <input id="name" placeholder="Operative Name">
 
-<input id="rate" placeholder="Hourly Rate">
+<input id="rate" placeholder="Hourly Rate (£)">
 
 <input id="week" type="date">
 
@@ -121,11 +121,13 @@ background:#9ca3af;
 <h3>Extras</h3>
 
 <input id="bonus" placeholder="Bonus £">
-<input id="miles" placeholder="Miles">
+<input id="miles" placeholder="Miles Driven">
 
 <textarea id="notes" placeholder="Notes"></textarea>
 
-<button onclick="generate()">Generate PDF</button>
+<button onclick="generatePDF()">Generate PDF</button>
+
+<button class="whatsapp" onclick="sendWhatsApp()">Send via WhatsApp</button>
 
 </div>
 
@@ -148,11 +150,13 @@ document.getElementById("app").style.display="block"
 
 function num(v){return parseFloat(v)||0}
 
-function generate(){
 
-let rate=num(rateInput())
+function calculateTotal(){
+
+let rate=num(document.getElementById("rate").value)
 
 let weekday=
+
 (num(mon.value)+
 num(tue.value)+
 num(wed.value)+
@@ -160,10 +164,20 @@ num(thu.value)+
 num(fri.value))*rate
 
 let satPay=num(sat.value)*rate*1.5
-
 let sunPay=num(sun.value)*rate*2
 
-let total=weekday+satPay+sunPay+num(bonus.value)+(num(miles.value)*0.45)
+let mileage=num(miles.value)*0.45
+
+let total=weekday+satPay+sunPay+num(bonus.value)+mileage
+
+return total
+
+}
+
+
+function generatePDF(){
+
+let total=calculateTotal()
 
 let html=`
 
@@ -173,7 +187,7 @@ let html=`
 
 <h2>PAYE Timesheet</h2>
 
-<p><b>Name:</b> ${name.value}</p>
+<p><b>Operative:</b> ${name.value}</p>
 
 <p><b>Week Ending:</b> ${week.value}</p>
 
@@ -189,7 +203,30 @@ w.print()
 
 }
 
-function rateInput(){return document.getElementById("rate").value}
+
+
+function sendWhatsApp(){
+
+let total=calculateTotal()
+
+let message=
+
+`Concept Decorating PAYE Timesheet
+
+Operative: ${name.value}
+
+Week Ending: ${week.value}
+
+Total Pay: £${total.toFixed(2)}
+
+Notes:
+${notes.value}`
+
+let url=`https://wa.me/?text=${encodeURIComponent(message)}`
+
+window.open(url)
+
+}
 
 </script>
 
